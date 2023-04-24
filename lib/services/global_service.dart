@@ -10,9 +10,7 @@ class GlobalService extends GetxService {
   final global = Global().obs;
 
   Future<GlobalService> init() async {
-    var response = await Util.getJsonFile('config/global.json');
-    // var response = await Util.getJsonFile('config/global_dev.json');
-    // var response = await Util.getJsonFile('config/global_local.json');
+    var response = await Util.getJsonFile('config/global_local.json');
     global.value = Global.fromJson(response);
 
     // linux, macos, web, windows 사용 시 Platform._operatingSystem 에러

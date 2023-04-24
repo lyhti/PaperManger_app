@@ -1,6 +1,0 @@
-{
-  "base_url": "http://13.125.136.243/",
-  "api_path": "api/app/",
-  "api_file_path": "storage/uploads/",
-  "mode": "dev"
-}

@@ -93,6 +93,8 @@ dependencies:
   month_year_picker: 0.2.0+2
 
   async_foreach: 0.0.5+4
+  logger: ^1.4.0
+  geolocator: ^10.0.1
 
 dev_dependencies:
   flutter_test:

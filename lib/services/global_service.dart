@@ -10,6 +10,8 @@ class GlobalService extends GetxService {
   final global = Global().obs;
 
   Future<GlobalService> init() async {
+    // var response = await Util.getJsonFile('config/global.json');
+    // var response = await Util.getJsonFile('config/global_dev.json');
     var response = await Util.getJsonFile('config/global_local.json');
     global.value = Global.fromJson(response);
 

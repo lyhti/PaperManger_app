@@ -373,15 +373,37 @@ class DocumentSearchView extends GetView<DocumentSearchController> {
                                   /** login token check */
                                   String check = await Util.tokenChk();
 
+                                  const safetyDocs = [
+                                    'work_sft_chck_list_s17',
+                                    'hvy_mtrl_hndl_work_plan',
+                                    'work_sft_mtg_risk_asmt_edu_jrnl',
+                                    'work_sft_mtg_risk_asmt_edu_jrnl_1',
+                                    'work_sft_mtg_risk_asmt_edu_jrnl_2'
+                                  ];
+
                                   if (check == 'agree') {
-                                    Get.toNamed("/${controller.docList[index].codeAbbreviation}",
-                                        arguments: {
-                                          'crud' : 'crud-r',
-                                          'doc_sn': controller.docList[index].documentSn,
-                                          'tab_cnt' : controller.docList[index].tabCnt,
-                                          'doc_type' : controller.docList[index].codeAbbreviation
-                                        }
-                                    );
+                                    // if(controller.docList[index].codeAbbreviation == 'work_sft_mtg_risk_asmt_edu_jrnl') {
+                                    if(safetyDocs.contains(controller.docList[index].codeAbbreviation)) {
+                                      Get.toNamed("/${controller.docList[index].codeAbbreviation}",
+                                          arguments: {
+                                            'crud' : 'crud-r',
+                                            'doc_sn': controller.docList[index].documentSn,
+                                            'tab_cnt' : controller.docList[index].tabCnt,
+                                            'doc_type' : controller.docList[index].codeAbbreviation,
+                                            'data_version' : controller.docList[index].dataVersion,
+                                            'view_version' : controller.docList[index].viewVersion,
+                                          }
+                                      );
+                                    } else {
+                                      Get.toNamed("/${controller.docList[index].codeAbbreviation}",
+                                          arguments: {
+                                            'crud' : 'crud-r',
+                                            'doc_sn': controller.docList[index].documentSn,
+                                            'tab_cnt' : controller.docList[index].tabCnt,
+                                            'doc_type' : controller.docList[index].codeAbbreviation
+                                          }
+                                      );
+                                    }
                                   }
                                 },
                                 cells: [

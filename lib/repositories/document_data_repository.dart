@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart' as dio;
 
+import '../common/log.dart';
 import './base_repository.dart';
 import '../model/document_data_model.dart';
 import '../common/util.dart';
@@ -20,9 +21,6 @@ class DocumentDataRepository extends BaseRepository {
 
     var response = await httpClient!.getUri(uri, options: optionsCache);
 
-    print('aaa');
-    print(response);
-
     if (response.data['success'] == true) {
       Util.print('문서 데이터 조회 : ${response.data['data']}');
       return response.data['data'].map<DocumentData>((obj) => DocumentData.fromJson(obj)).toList();
@@ -42,6 +40,8 @@ class DocumentDataRepository extends BaseRepository {
     httpClient!.options.maxRedirects.isFinite;
 
     var response = await httpClient!.postUri(uri, data: formData, options: optionsCache);
+
+    logger.d(response.data);
 
     if (response.data['success'] == true) {
       Util.print('문서 데이터 insert : ${response.data}');
@@ -64,6 +64,8 @@ class DocumentDataRepository extends BaseRepository {
     httpClient!.options.maxRedirects.isFinite;
 
     var response = await httpClient!.postUri(uri, data: formData, options: optionsCache);
+
+    logger.d(response);
 
     if (response.data['success'] == true) {
       Util.print('문서 데이터 update : ${response.data}');

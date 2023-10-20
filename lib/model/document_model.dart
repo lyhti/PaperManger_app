@@ -22,9 +22,12 @@ class Document extends Model {
   String? userNm;                  // 작성자이름
   String? codeAbbreviation;        // 문서종류_구분코드
 
+  int? dataVersion;                 // data 버전
+  int? viewVersion;                 // view 버전
+
   Document({
     this.documentSn, this.documentTypeSn, this.entrpsSn, this.title, this.version, this.tabCnt, this.useYn,
-    this.crtUserSn, this.crtDt, this.udtUserSn, this.udtDt, this.delDt, this.documentTypeNm, this.userNm, this.codeAbbreviation
+    this.crtUserSn, this.crtDt, this.udtUserSn, this.udtDt, this.delDt, this.documentTypeNm, this.userNm, this.codeAbbreviation, this.dataVersion, this.viewVersion
   });
 
   Document.fromJson(Map<String, dynamic> json) {
@@ -46,28 +49,32 @@ class Document extends Model {
     documentTypeNm = stringFromJson(json, 'document_type_nm');
     userNm = stringFromJson(json, 'user_nm');
     codeAbbreviation = stringFromJson(json, 'code_abbreviation');
+    dataVersion = intFromJson(json, 'data_version');
+    viewVersion = intFromJson(json, 'view_version');
   }
 
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['document_sn'] = this.documentSn;
-    data['document_type_sn'] = this.documentTypeSn;
-    data['entrps_sn'] = this.entrpsSn;
-    data['title'] = this.title;
-    data['version'] = this.version;
-    data['tab_cnt'] = this.tabCnt;
-    data['use_yn'] = this.useYn;
+    data['document_sn'] = documentSn;
+    data['document_type_sn'] = documentTypeSn;
+    data['entrps_sn'] = entrpsSn;
+    data['title'] = title;
+    data['version'] = version;
+    data['tab_cnt'] = tabCnt;
+    data['use_yn'] = useYn;
 
-    data['crt_user_sn'] = this.crtUserSn;
-    data['crt_dt'] = this.crtDt;
-    data['udt_user_sn'] = this.udtUserSn;
-    data['udt_dt'] = this.udtDt;
-    data['del_dt'] = this.delDt;
+    data['crt_user_sn'] = crtUserSn;
+    data['crt_dt'] = crtDt;
+    data['udt_user_sn'] = udtUserSn;
+    data['udt_dt'] = udtDt;
+    data['del_dt'] = delDt;
 
-    data['document_type_nm'] = this.documentTypeNm;
-    data['user_nm'] = this.userNm;
-    data['code_abbreviation'] = this.codeAbbreviation;
+    data['document_type_nm'] = documentTypeNm;
+    data['user_nm'] = userNm;
+    data['code_abbreviation'] = codeAbbreviation;
+    data['data_version'] = dataVersion;
+    data['view_version'] = viewVersion;
     return data;
   }
 }

@@ -1,3 +1,4 @@
+// import '../common/log.dart';
 import '../services/global_service.dart';
 
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ mixin ApiService {
 
   String getApiBaseUrl(String path) {
     String apiPath = globalService.global.value.apiPath.toString();
+
     if (path.startsWith('/')) {
       return getBaseUrl(apiPath) + path.substring(1);
     }

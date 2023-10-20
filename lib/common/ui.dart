@@ -77,7 +77,7 @@ class Ui {
     );
   }
 
-  /// Picker
+  /// Date Picker
   static Future datePicker(BuildContext context, Rx<DateTime> date, {DateTime? firstDate, Function? callback}) async {
     // firstDate == null 이면 firstDate = DateTime
     firstDate ??= DateTime(1970);
@@ -92,8 +92,6 @@ class Ui {
         return child!.paddingAll(10);
       },
     );
-
-    print(picked);
 
     if (picked != null){
       date.value = picked;
@@ -128,6 +126,8 @@ class Ui {
       }
     }
   }
+
+  /// Time Picker
 
   /// 프로젝트 공통 색상 (버튼, 로더, 탭 등)
   static Color commonColors() {

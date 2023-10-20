@@ -9,6 +9,8 @@ class DocumentType extends Model {
   String? codeAbbreviation;        // 문서종류 구분코드 약어
   String? codeExpansion;           // 문서종류 구분코드 전체(풀네임)
   double? version;                 // 문서종류 버전
+  int? dataVersion;
+  int? viewVersion;
 
   int? crtUserSn;                  // 생성자
   DateTime? crtDt;                 // 생성 일시
@@ -28,6 +30,8 @@ class DocumentType extends Model {
     codeAbbreviation = stringFromJson(json, 'code_abbreviation');
     codeExpansion = stringFromJson(json, 'code_expansion');
     version = doubleFromJson(json, 'version');
+    dataVersion = intFromJson(json, 'data_version');
+    viewVersion = intFromJson(json, 'view_version');
     crtUserSn = intFromJson(json, 'crt_user_sn');
     crtDt = dateFromJson(json, 'crt_dt');
     udtUserSn = intFromJson(json, 'udt_user_sn');
@@ -38,16 +42,18 @@ class DocumentType extends Model {
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
-    data['document_type_sn'] = this.documentTypeSn;
-    data['document_type_nm'] = this.documentTypeNm;
-    data['code_abbreviation'] = this.codeAbbreviation;
-    data['code_expansion'] = this.codeExpansion;
-    data['version'] = this.version;
-    data['crt_user_sn'] = this.crtUserSn;
-    data['crt_dt'] = this.crtDt;
-    data['udt_user_sn'] = this.udtUserSn;
-    data['udt_dt'] = this.udtDt;
-    data['del_dt'] = this.delDt;
+    data['document_type_sn'] = documentTypeSn;
+    data['document_type_nm'] = documentTypeNm;
+    data['code_abbreviation'] = codeAbbreviation;
+    data['code_expansion'] = codeExpansion;
+    data['version'] = version;
+    data['data_version'] = dataVersion;
+    data['view_version'] = viewVersion;
+    data['crt_user_sn'] = crtUserSn;
+    data['crt_dt'] = crtDt;
+    data['udt_user_sn'] = udtUserSn;
+    data['udt_dt'] = udtDt;
+    data['del_dt'] = delDt;
     return data;
   }
 }

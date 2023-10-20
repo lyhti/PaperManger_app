@@ -127,12 +127,31 @@ class HomeViewWidget extends GetView<HomeController> {
                                       /** login token check */
                                       String check = await Util.tokenChk();
 
+                                      const safetyDocs = [
+                                        'work_sft_chck_list_s17',
+                                        'hvy_mtrl_hndl_work_plan',
+                                        'work_sft_mtg_risk_asmt_edu_jrnl',
+                                        'work_sft_mtg_risk_asmt_edu_jrnl_1',
+                                        'work_sft_mtg_risk_asmt_edu_jrnl_2'
+                                      ];
+
                                       if (check == 'agree') {
-                                        Get.toNamed('/${element.codeAbbreviation}',
-                                            arguments: {
-                                              'crud' : 'crud-c',
-                                              'doc_type' : element.codeAbbreviation
-                                            });
+                                        // if(element.codeAbbreviation == 'work_sft_mtg_risk_asmt_edu_jrnl') {
+                                        if(safetyDocs.contains(element.codeAbbreviation)) {
+                                          Get.toNamed('/${element.codeAbbreviation}',
+                                              arguments: {
+                                                'crud' : 'crud-c',
+                                                'doc_type' : element.codeAbbreviation,
+                                                'data_version' : element.dataVersion,
+                                                'view_version' : element.viewVersion,
+                                              });
+                                        } else {
+                                          Get.toNamed('/${element.codeAbbreviation}',
+                                              arguments: {
+                                                'crud' : 'crud-c',
+                                                'doc_type' : element.codeAbbreviation
+                                              });
+                                        }
                                       }
                                     }
                                   }
@@ -161,7 +180,7 @@ class HomeViewWidget extends GetView<HomeController> {
                         elevation: 4.0,
                         child: Column(
                           children: [
-                            const Text('조회', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                            const Text('문서 조회', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
@@ -186,6 +205,43 @@ class HomeViewWidget extends GetView<HomeController> {
                     ),
                   ],
                 ),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        elevation: 4.0,
+                        child: Column(
+                          children: [
+                            const Text('사인 요청 조회', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    /** login token check */
+                                    String check = await Util.tokenChk();
+
+                                    if (check == 'agree') {
+                                      Get.toNamed('/signTaskList');
+                                    }
+                                  },
+                                  icon: const Icon(Icons.search),
+                                  color: Ui.commonColors(),
+                                  iconSize: 50,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
               ],
             ),
           ),

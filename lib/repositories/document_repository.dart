@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../common/log.dart';
 import '../common/ui.dart';
 import '../model/document_model.dart';
 import '../common/util.dart';
@@ -30,6 +31,8 @@ class DocumentRepository extends BaseRepository {
       var data = <String, dynamic>{};
       data['paging'] = Paging.fromJson(response.data['data']);
       data['dataList'] = response.data['data']['data'].map<Document>((obj) => Document.fromJson(obj)).toList();
+
+      logger.d(data);
 
       return data;
     } else {

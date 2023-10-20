@@ -34,6 +34,11 @@ class HomeController extends GetxController {
   Future getDocType() async {
     try {
       List<DocumentType> result = await documentTypeRepository.getDocType(auth.user.value.entrpsSn!.toInt());
+      // List<DocumentType> result = await documentTypeRepository.getCrntDocType(auth.user.value.entrpsSn!.toInt());
+
+      Util.print('getDocType');
+      Util.print(result);
+
       auth.docTypeList.assignAll(result);
     } catch (e) {
       isLoading.value = false;
